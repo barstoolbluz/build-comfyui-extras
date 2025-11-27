@@ -1,0 +1,4 @@
+# Binary files - don't attempt text processing
+*.whl binary
+*.tar.gz binary
+*.zip binary
