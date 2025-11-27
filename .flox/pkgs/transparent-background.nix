@@ -25,6 +25,7 @@ python3.pkgs.buildPythonPackage rec {
     tqdm
     kornia
     gdown
+    wget
   ];
 
   pythonImportsCheck = [ "transparent_background" ];
