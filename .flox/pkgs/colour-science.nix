@@ -1,19 +1,12 @@
-{ lib, python3, fetchPypi }:
+{ lib, python3 }:
 
 python3.pkgs.buildPythonPackage rec {
   pname = "colour-science";
   version = "0.4.6";
   format = "wheel";
 
-  src = fetchPypi {
-    inherit version;
-    pname = "colour_science";
-    format = "wheel";
-    python = "py3";
-    abi = "none";
-    platform = "any";
-    sha256 = "027frz8afkixpgsq9d66zr9dwi0r3q1mgni58b1g65hca1nhxnac";
-  };
+  # Use vendored source for reproducibility
+  src = ../../sources/colour_science-0.4.6-py3-none-any.whl;
 
   dontBuild = true;
 

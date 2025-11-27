@@ -1,19 +1,12 @@
-{ lib, python3, fetchPypi }:
+{ lib, python3 }:
 
 python3.pkgs.buildPythonPackage rec {
   pname = "transparent-background";
   version = "1.3.4";
   format = "wheel";
 
-  src = fetchPypi {
-    inherit version;
-    pname = "transparent_background";
-    format = "wheel";
-    python = "py3";
-    abi = "none";
-    platform = "any";
-    sha256 = "0chx5bv3ic0s9pcfjad7xnidvbqcs0c2qwpb2vm0dbi4w5i3k0ma";
-  };
+  # Use vendored source for reproducibility
+  src = ../../sources/transparent_background-1.3.4-py3-none-any.whl;
 
   dontBuild = true;
 

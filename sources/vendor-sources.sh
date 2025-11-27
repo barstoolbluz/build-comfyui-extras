@@ -1,5 +1,24 @@
 #!/usr/bin/env bash
 # Script to download and vendor all custom package sources
+#
+# USAGE:
+#   ./sources/vendor-sources.sh
+#
+# PURPOSE:
+#   Downloads all PyPI wheels and GitHub tarballs for custom packages.
+#   These vendored sources are committed to git and used as PRIMARY sources
+#   in .nix files (not as backups - they ARE the source of truth).
+#
+# VERSION BRANCHING WORKFLOW:
+#   When updating to a new ComfyUI version (e.g., 0.3.76):
+#   1. Create new branch: git checkout -b 0.3.76
+#   2. Update package versions in .nix files if needed
+#   3. Run this script: ./sources/vendor-sources.sh
+#   4. Commit vendored sources: git add sources/ && git commit
+#   5. Test builds on all platforms
+#   6. Merge to main and tag: git merge 0.3.76 && git tag v0.3.76
+#
+# See REPRODUCIBILITY.md for complete workflow documentation.
 
 set -euo pipefail
 
@@ -30,12 +49,12 @@ curl -L -o "$SOURCES_DIR/transparent_background-1.3.4-py3-none-any.whl" \
 
 # img2texture (from GitHub)
 echo "Downloading img2texture..."
-curl -L -o "$SOURCES_DIR/img2texture-d6159ab.tar.gz" \
+curl -L -o "$SOURCES_DIR/img2texture-d6159abea44a0b2cf77454d3d46962c8b21eb9d3.tar.gz" \
   https://github.com/WASasquatch/img2texture/archive/d6159abea44a0b2cf77454d3d46962c8b21eb9d3.tar.gz
 
 # cstr (from GitHub)
 echo "Downloading cstr..."
-curl -L -o "$SOURCES_DIR/cstr-0520c29.tar.gz" \
+curl -L -o "$SOURCES_DIR/cstr-0520c29a18a7a869a6e5983861d6f7a4c86f8e9b.tar.gz" \
   https://github.com/WASasquatch/cstr/archive/0520c29a18a7a869a6e5983861d6f7a4c86f8e9b.tar.gz
 
 # ffmpy 0.5.0

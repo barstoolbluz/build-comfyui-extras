@@ -1,14 +1,12 @@
-{ lib, python3, fetchPypi }:
+{ lib, python3 }:
 
 python3.pkgs.buildPythonPackage rec {
   pname = "pixeloe";
   version = "0.1.4";
   format = "pyproject";
 
-  src = fetchPypi {
-    inherit pname version;
-    hash = "sha256-LWuVp6elV+B6bxV41tr6iErcQlzBqxbYzsLm/yZZSQE=";
-  };
+  # Use vendored source for reproducibility
+  src = ../../sources/pixeloe-0.1.4.tar.gz;
 
   nativeBuildInputs = with python3.pkgs; [
     setuptools

@@ -1,18 +1,12 @@
-{ lib, python3, fetchPypi }:
+{ lib, python3 }:
 
 python3.pkgs.buildPythonPackage rec {
   pname = "rembg";
   version = "2.0.68";
   format = "wheel";
 
-  src = fetchPypi {
-    inherit pname version;
-    format = "wheel";
-    python = "py3";
-    abi = "none";
-    platform = "any";
-    sha256 = "12xjaq0m5ddbdbzcgdpj15rfqvk9vicyinnjs3c3frl21d237qs1";
-  };
+  # Use vendored source for reproducibility
+  src = ../../sources/rembg-2.0.68-py3-none-any.whl;
 
   dontBuild = true;
 

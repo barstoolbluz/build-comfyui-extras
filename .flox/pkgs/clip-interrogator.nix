@@ -1,14 +1,12 @@
-{ lib, python3, fetchurl }:
+{ lib, python3 }:
 
 python3.pkgs.buildPythonPackage rec {
   pname = "clip-interrogator";
   version = "0.6.0";
   format = "wheel";
 
-  src = fetchurl {
-    url = "https://files.pythonhosted.org/packages/30/79/a75e9129809368b3e3d9b9bc803230ac1cba7d690338f7b0c3ad46107fa3/clip_interrogator-0.6.0-py3-none-any.whl";
-    sha256 = "075xxam95adh50sanxfcxf70zajq2vy47sbr85dh03qpvgwnnz6d";
-  };
+  # Use vendored source for reproducibility
+  src = ../../sources/clip_interrogator-0.6.0-py3-none-any.whl;
 
   dontBuild = true;
 

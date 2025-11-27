@@ -1,6 +1,6 @@
 # ComfyUI Extras - Custom Node Dependencies
 
-Production-ready package containing all common ComfyUI custom node dependencies, properly packaged for Nix/Flox.
+Production-ready package containing all common ComfyUI custom node dependencies, properly packaged for Nix/Flox with long-term reproducibility.
 
 ## Overview
 
@@ -11,144 +11,107 @@ This package provides a batteries-included collection of Python dependencies com
 - **ComfyUI Extras Version**: 0.3.75
 - **Compatible with ComfyUI**: 0.3.75
 
-**Version Policy**: comfyui-extras version matches ComfyUI version exactly. When ComfyUI updates to 0.3.76, comfyui-extras will also update to 0.3.76. This ensures compatibility and makes it clear which versions work together.
+**Version Policy**: comfyui-extras version matches ComfyUI version exactly. When ComfyUI updates to 0.3.76, comfyui-extras will also update to 0.3.76.
+
+## Platform Support
+
+| Platform | Packages |
+|----------|----------|
+| x86_64-linux | 19 packages (all) |
+| aarch64-linux | 17 packages (excludes pixeloe, transparent-background due to kornia-rs) |
+| x86_64-darwin | 19 packages (all) |
+| aarch64-darwin | 19 packages (all) |
 
 ## Included Packages
 
-### Tier 1: Lightweight, Essential
-- ✅ `piexif` - Image EXIF metadata manipulation
-- ✅ `simpleeval` - Safe expression evaluation
-- ⏳ `colour-science` - Color manipulation utilities
-- ⏳ `color-matcher` - Color matching between images
-- ⏳ `numba` - JIT compiler for Python
-- ⏳ `gitpython` - Git operations from Python
+### From nixpkgs (10 packages)
+- ✅ piexif - Image EXIF metadata
+- ✅ simpleeval - Safe expression evaluation
+- ✅ numba - JIT compiler
+- ✅ gitpython - Git operations
+- ✅ onnxruntime - ONNX inference
+- ✅ fairscale - Distributed training
+- ✅ albumentations - Image augmentation
+- ✅ easydict - Dict with attribute access
+- ✅ pymatting - Alpha matting
+- ✅ pillow-heif - HEIF support
 
-### Tier 2: Moderate, Widely Used
-- ⏳ `rembg` - Background removal
-- ⏳ `onnxruntime` - ONNX model inference
+### Custom Built (9 packages)
+- ✅ colour-science 0.4.6 - Color manipulation
+- ✅ clip-interrogator 0.6.0 - CLIP image interrogation
+- ✅ pixeloe 0.1.4 - Pixel art generation*
+- ✅ transparent-background 1.3.4 - Background removal*
+- ✅ img2texture - Seamless texture generation
+- ✅ cstr - String utilities
+- ✅ ffmpy 0.5.0 - FFmpeg wrapper
+- ✅ color-matcher 0.6.0 - Color matching (custom: nixpkgs broken on macOS)
+- ✅ rembg 2.0.68 - Background removal (custom: nixpkgs x86_64-linux only)
 
-### Tier 3: Heavy but Useful
-- ⏳ `clip-interrogator` - CLIP-based image interrogation
-- ⏳ `fairscale` - PyTorch distributed training
-- ⏳ `transparent-background` - Transparent background generation
-- ⏳ `pixeloe` - Pixel art generation
-
-### Additional Dependencies
-- ⏳ `albumentations` - Image augmentation library
-- ⏳ `easydict` - Dictionary with attribute access
-- ⏳ `pymatting` - Alpha matting toolbox
-- ⏳ `pillow-heif` - HEIF image support
-
-### WASasquatch Git Packages
-- ⏳ `img2texture` - Texture generation from images
-- ⏳ `cstr` - String utilities
-- ⏳ `ffmpy` - FFmpeg wrapper
-
-### Utilities
-- ⏳ `wget-python` - Pure Python wget implementation
+\* Not available on aarch64-linux due to kornia-rs dependency
 
 ## Installation
 
-### As a User
+### For Users
 
 ```toml
-# In your ComfyUI environment manifest.toml
+# Add to your ComfyUI environment's manifest.toml
 [install]
-comfyui.pkg-path = "barstoolbluz/comfyui"
-comfyui-extras.pkg-path = "barstoolbluz/comfyui-extras"
+comfyui-extras.pkg-path = "barstoolbluz/comfyui-extras@0.3.75"
 ```
 
-### As a Developer
+Or install directly:
+```bash
+flox install barstoolbluz/comfyui-extras
+```
+
+### For Developers
 
 ```bash
-# Clone the repository
-cd ~/dev/builds
-git clone <repo-url> build-comfyui-extras
+# Clone and build
+git clone https://github.com/barstoolbluz/build-comfyui-extras
 cd build-comfyui-extras
-
-# Activate the build environment
-flox activate
-
-# Build the package
 flox build comfyui-extras
 
-# Test the package
-flox activate -- python3 -c "import piexif; import simpleeval; print('Success!')"
-
 # Publish to your catalog
-flox publish -o barstoolbluz comfyui-extras
+flox publish -o yourorg comfyui-extras
 ```
 
-## Package Development Status
+## Reproducibility
 
-**Legend:**
-- ✅ Complete and tested
-- ⏳ Package definition created, needs hash/testing
-- ❌ Not yet started
+This package is built for **long-term reproducible builds**:
 
-### Priority 1 (Complete These First)
-1. ✅ piexif
-2. ✅ simpleeval
-3. ⏳ img2texture (git package - get hash)
-4. ⏳ cstr (git package - get hash)
-5. ⏳ ffmpy (git package - get hash)
+1. **Vendored sources as primary** - All custom packages use vendored sources in `sources/` directory
+2. **Fully offline builds** - No network fetches required, build from git-committed sources
+3. **Version branching** - Each ComfyUI version has its own git branch with frozen vendored sources
+4. **Platform-specific handling** - Graceful degradation on unsupported platforms
+5. **Complete git history** - All source changes tracked and auditable
 
-### Priority 2 (Common Dependencies)
-6. ⏳ numba
-7. ⏳ gitpython
-8. ⏳ colour-science
-9. ⏳ color-matcher
-10. ⏳ easydict
+**Key principle**: `.nix` files reference vendored sources directly (`src = ../../sources/package.whl`), NOT upstream URLs. This ensures builds work forever, even if PyPI or GitHub removes packages.
 
-### Priority 3 (Advanced Features)
-11. ⏳ rembg
-12. ⏳ onnxruntime
-13. ⏳ clip-interrogator
-14. ⏳ fairscale
-15. ⏳ transparent-background
-16. ⏳ pixeloe
-17. ⏳ albumentations
-18. ⏳ pymatting
-19. ⏳ pillow-heif
-20. ⏳ wget-python
+See [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for complete architecture and version update workflow.
 
 ## Custom Nodes Supported
 
-This package provides dependencies for these popular custom nodes:
+This package provides dependencies for popular custom nodes:
 
 - ✅ **ComfyUI-Image-Saver** - piexif
-- ✅ **rgthree-comfy** - No extra deps needed
-- ✅ **UltimateSDUpscale** - No extra deps needed
-- ⏳ **was-node-suite-comfyui** - All WASasquatch packages + many others
-- ⏳ **ComfyUI_essentials** - numba, colour-science, rembg, pixeloe, transparent-background
-- ⏳ **ComfyUI-KJNodes** - color-matcher
-- ⏳ **efficiency-nodes-comfyui** - clip-interrogator, simpleeval
+- ✅ **was-node-suite-comfyui** - All WASasquatch packages
+- ✅ **ComfyUI_essentials** - numba, colour-science, rembg, pixeloe, transparent-background
+- ✅ **ComfyUI-KJNodes** - color-matcher
+- ✅ **efficiency-nodes-comfyui** - clip-interrogator, simpleeval
 
-## Building Individual Packages
+## Documentation
 
-Each package in `.flox/pkgs/` can be built independently:
-
-```bash
-# Get the correct hash for a git package
-nix-prefetch-github WASasquatch img2texture --rev v1.0.6
-
-# Build and test individual package
-flox build img2texture
-flox activate -- python3 -c "import img2texture; print('Works!')"
-```
+- [PACKAGING.md](PACKAGING.md) - Guide for adding/updating packages
+- [REPRODUCIBILITY.md](REPRODUCIBILITY.md) - Reproducible build architecture
+- [sources/README.md](sources/README.md) - Vendored sources documentation
 
 ## Contributing
 
-To add a new package:
-
-1. Create `.flox/pkgs/<package-name>.nix`
-2. Add to `propagatedBuildInputs` in `comfyui-extras.nix`
-3. Update this README with status
-4. Test the build
-5. Submit PR
+See [PACKAGING.md](PACKAGING.md) for how to add or update packages.
 
 ## License
 
-MIT (for the packaging infrastructure)
+MIT (packaging infrastructure)
 
 Individual packages maintain their respective licenses.

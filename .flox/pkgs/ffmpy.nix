@@ -1,18 +1,12 @@
-{ lib, python3, fetchPypi }:
+{ lib, python3 }:
 
 python3.pkgs.buildPythonPackage rec {
   pname = "ffmpy";
   version = "0.5.0";
   format = "wheel";
 
-  src = fetchPypi {
-    inherit pname version;
-    format = "wheel";
-    python = "py3";
-    abi = "none";
-    platform = "any";
-    sha256 = "0cq2p2j9nl9is7kdl2b0nrl6fg751rij782r95nsbnhnb37rjdyz";
-  };
+  # Use vendored source for reproducibility
+  src = ../../sources/ffmpy-0.5.0-py3-none-any.whl;
 
   dontBuild = true;
 

@@ -1,19 +1,12 @@
-{ lib, python3, fetchPypi }:
+{ lib, python3 }:
 
 python3.pkgs.buildPythonPackage rec {
   pname = "color-matcher";
   version = "0.6.0";
   format = "wheel";
 
-  src = fetchPypi {
-    inherit version;
-    pname = "color_matcher";
-    format = "wheel";
-    python = "py3";
-    abi = "none";
-    platform = "any";
-    sha256 = "0d3pvay2xdfcwaf5hr162hv0h866q640izlnphz7yfy32ja2yr7x";
-  };
+  # Use vendored source for reproducibility
+  src = ../../sources/color_matcher-0.6.0-py3-none-any.whl;
 
   dontBuild = true;
 

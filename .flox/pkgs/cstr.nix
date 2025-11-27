@@ -1,16 +1,12 @@
-{ lib, python3, fetchFromGitHub }:
+{ lib, python3 }:
 
 python3.pkgs.buildPythonPackage rec {
   pname = "cstr";
   version = "unstable-2023-05-28";
   format = "setuptools";
 
-  src = fetchFromGitHub {
-    owner = "WASasquatch";
-    repo = "cstr";
-    rev = "0520c29a18a7a869a6e5983861d6f7a4c86f8e9b";
-    sha256 = "1fm22x63ijqszc3a38f7hdfglhbx16pwdkz8b9j5a81v966yf06d";
-  };
+  # Use vendored source for reproducibility
+  src = ../../sources/cstr-0520c29a18a7a869a6e5983861d6f7a4c86f8e9b.tar.gz;
 
   pythonImportsCheck = [ "cstr" ];
 

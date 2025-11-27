@@ -1,7 +1,5 @@
 { lib
 , python3
-, fetchFromGitHub
-, fetchPypi
 , callPackage
 , stdenv
 }:
