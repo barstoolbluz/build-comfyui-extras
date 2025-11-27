@@ -18,6 +18,9 @@ python3.pkgs.buildPythonPackage rec {
     numpy
     pillow
     scipy
+    opencv4
+    torch
+    kornia
   ];
 
   pythonImportsCheck = [ "pixeloe" ];
