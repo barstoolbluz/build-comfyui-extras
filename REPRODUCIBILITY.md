@@ -114,7 +114,7 @@ These are already in Nix's binary cache and don't need vendoring:
 - pixeloe (requires kornia-rs, which has `badPlatforms = ["aarch64-linux"]`)
 - transparent-background (also requires kornia-rs)
 
-This is handled in `comfyui-extras.nix`:
+Handled in `comfyui-extras.nix`:
 ```nix
 ] ++ lib.optionals (!stdenv.hostPlatform.isAarch64 || !stdenv.hostPlatform.isLinux) [
   pixeloe
@@ -122,7 +122,17 @@ This is handled in `comfyui-extras.nix`:
 ]
 ```
 
-Result: **19 packages on most platforms, 17 on aarch64-linux**
+**aarch64-darwin excludes 1 package**:
+- albumentations (depends on stringzilla which has C compilation issues with Apple SDK)
+
+Handled in `comfyui-extras.nix`:
+```nix
+] ++ lib.optionals (!stdenv.hostPlatform.isDarwin || !stdenv.hostPlatform.isAarch64) (with python3.pkgs; [
+  albumentations
+])
+```
+
+Result: **19 packages on x86_64 (Linux/macOS), 17 on aarch64-linux, 18 on aarch64-darwin**
 
 ## Nix Binary Cache
 

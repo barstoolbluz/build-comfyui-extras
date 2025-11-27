@@ -29,17 +29,19 @@ python3.pkgs.buildPythonPackage rec {
 
   # Import all custom node dependency packages
   propagatedBuildInputs = (with python3.pkgs; [
-    # From nixpkgs - Already available (10 packages)
+    # From nixpkgs - Always available (9 packages)
     piexif
     simpleeval
     numba
     gitpython
     onnxruntime
     fairscale
-    albumentations
     easydict
     pymatting
     pillow-heif
+  ]) ++ lib.optionals (!stdenv.hostPlatform.isDarwin || !stdenv.hostPlatform.isAarch64) (with python3.pkgs; [
+    # Broken on aarch64-darwin due to stringzilla compilation issues
+    albumentations
   ]) ++ [
     # Custom packages (9 packages)
     colour-science

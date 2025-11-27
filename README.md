@@ -15,12 +15,12 @@ This package provides a batteries-included collection of Python dependencies com
 
 ## Platform Support
 
-| Platform | Packages |
-|----------|----------|
-| x86_64-linux | 19 packages (all) |
-| aarch64-linux | 17 packages (excludes pixeloe, transparent-background due to kornia-rs) |
-| x86_64-darwin | 19 packages (all) |
-| aarch64-darwin | 19 packages (all) |
+| Platform | Packages | Notes |
+|----------|----------|-------|
+| x86_64-linux | 19 packages (all) | Full support |
+| aarch64-linux | 17 packages | Excludes: pixeloe, transparent-background (kornia-rs broken) |
+| x86_64-darwin | 19 packages (all) | Full support |
+| aarch64-darwin | 18 packages | Excludes: albumentations (stringzilla compilation issue) |
 
 ## Included Packages
 
@@ -31,10 +31,12 @@ This package provides a batteries-included collection of Python dependencies com
 - ✅ gitpython - Git operations
 - ✅ onnxruntime - ONNX inference
 - ✅ fairscale - Distributed training
-- ✅ albumentations - Image augmentation
+- ✅ albumentations - Image augmentation (not on aarch64-darwin)*
 - ✅ easydict - Dict with attribute access
 - ✅ pymatting - Alpha matting
 - ✅ pillow-heif - HEIF support
+
+\* Not available on aarch64-darwin due to stringzilla compilation issues
 
 ### Custom Built (9 packages)
 - ✅ colour-science 0.4.6 - Color manipulation
