@@ -43,7 +43,7 @@ python3.pkgs.buildPythonPackage rec {
     # Broken on aarch64-darwin due to stringzilla compilation issues
     albumentations
   ]) ++ [
-    # Custom packages (9 packages)
+    # Custom packages - Always included (7 packages)
     colour-science
     clip-interrogator
     img2texture
@@ -52,7 +52,7 @@ python3.pkgs.buildPythonPackage rec {
     color-matcher  # Custom build - nixpkgs version broken on macOS
     rembg  # Custom build - nixpkgs version x86_64-linux only
   ] ++ lib.optionals (!stdenv.hostPlatform.isAarch64 || !stdenv.hostPlatform.isLinux) [
-    # These require kornia which is broken on aarch64-linux
+    # Custom packages - Conditional (2 packages, excluded on aarch64-linux due to kornia-rs)
     pixeloe
     transparent-background
   ];
