@@ -8,8 +8,10 @@ This package provides a batteries-included collection of Python dependencies com
 
 ## Version Compatibility
 
-- **ComfyUI Extras Version**: 0.1.0
-- **Compatible with ComfyUI**: 0.3.75+
+- **ComfyUI Extras Version**: 0.3.75
+- **Compatible with ComfyUI**: 0.3.75
+
+**Version Policy**: comfyui-extras version matches ComfyUI version exactly. When ComfyUI updates to 0.3.76, comfyui-extras will also update to 0.3.76. This ensures compatibility and makes it clear which versions work together.
 
 ## Included Packages
 

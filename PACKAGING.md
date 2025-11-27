@@ -255,18 +255,34 @@ flox publish -o barstoolbluz comfyui-extras
 
 ## Version Management
 
-Match extras version to ComfyUI version:
+**Policy**: comfyui-extras version ALWAYS matches ComfyUI version exactly.
 
-```toml
-# In manifest.toml
-[vars]
-COMFYUI_EXTRAS_VERSION = "0.1.0"
-COMFYUI_COMPAT_VERSION = "0.3.75"  # Compatible with ComfyUI 0.3.75+
+When ComfyUI updates (e.g., 0.3.75 → 0.3.76):
+
+1. Update version in `.flox/pkgs/comfyui-extras.nix`:
+   ```nix
+   version = "0.3.76";  # Match ComfyUI version
+   ```
+
+2. Test extras package with new ComfyUI version
+3. Update individual package dependencies if needed
+4. Rebuild and republish
+
+```bash
+# Update version
+cd ~/dev/builds/build-comfyui-extras
+# Edit .flox/pkgs/comfyui-extras.nix
+
+# Test build
+flox build comfyui-extras
+
+# Republish
+flox publish -o barstoolbluz comfyui-extras
 ```
 
-When ComfyUI updates:
-1. Test extras package with new ComfyUI
-2. Update dependencies if needed
-3. Bump COMFYUI_EXTRAS_VERSION
-4. Update COMFYUI_COMPAT_VERSION
-5. Republish
+Users can then install matching versions:
+```toml
+[install]
+comfyui.pkg-path = "barstoolbluz/comfyui@0.3.76"
+comfyui-extras.pkg-path = "barstoolbluz/comfyui-extras@0.3.76"
+```
