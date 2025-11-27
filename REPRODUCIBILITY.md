@@ -122,17 +122,17 @@ Handled in `comfyui-extras.nix`:
 ]
 ```
 
-**aarch64-darwin excludes 1 package**:
-- albumentations (depends on stringzilla which has C compilation issues with Apple SDK)
+**All Darwin (macOS) platforms exclude 1 package**:
+- albumentations (depends on stringzilla which has C compilation issues with Apple SDK on both x86_64 and aarch64)
 
 Handled in `comfyui-extras.nix`:
 ```nix
-] ++ lib.optionals (!stdenv.hostPlatform.isDarwin || !stdenv.hostPlatform.isAarch64) (with python3.pkgs; [
+] ++ lib.optionals (!stdenv.hostPlatform.isDarwin) (with python3.pkgs; [
   albumentations
 ])
 ```
 
-Result: **19 packages on x86_64 (Linux/macOS), 17 on aarch64-linux, 18 on aarch64-darwin**
+Result: **19 packages on Linux x86_64, 17 on Linux aarch64, 18 on macOS (all architectures)**
 
 ## Nix Binary Cache
 

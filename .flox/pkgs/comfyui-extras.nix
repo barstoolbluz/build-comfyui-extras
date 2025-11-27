@@ -39,8 +39,8 @@ python3.pkgs.buildPythonPackage rec {
     easydict
     pymatting
     pillow-heif
-  ]) ++ lib.optionals (!stdenv.hostPlatform.isDarwin || !stdenv.hostPlatform.isAarch64) (with python3.pkgs; [
-    # Broken on aarch64-darwin due to stringzilla compilation issues
+  ]) ++ lib.optionals (!stdenv.hostPlatform.isDarwin) (with python3.pkgs; [
+    # Broken on all Darwin (macOS) platforms due to stringzilla compilation issues
     albumentations
   ]) ++ [
     # Custom packages - Always included (7 packages)
