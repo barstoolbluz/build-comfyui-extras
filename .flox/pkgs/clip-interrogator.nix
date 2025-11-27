@@ -15,6 +15,8 @@ python3.pkgs.buildPythonPackage rec {
     sha256 = "075xxam95adh50sanxfcxf70zajq2vy47sbr85dh03qpvgwnnz6d";
   };
 
+  dontBuild = true;
+
   propagatedBuildInputs = with python3.pkgs; [
     torch
     torchvision

@@ -14,6 +14,8 @@ python3.pkgs.buildPythonPackage rec {
     sha256 = "0cq2p2j9nl9is7kdl2b0nrl6fg751rij782r95nsbnhnb37rjdyz";
   };
 
+  dontBuild = true;
+
   pythonImportsCheck = [ "ffmpy" ];
 
   meta = with lib; {

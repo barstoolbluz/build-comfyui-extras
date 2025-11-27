@@ -15,6 +15,8 @@ python3.pkgs.buildPythonPackage rec {
     sha256 = "027frz8afkixpgsq9d66zr9dwi0r3q1mgni58b1g65hca1nhxnac";
   };
 
+  dontBuild = true;
+
   propagatedBuildInputs = with python3.pkgs; [
     numpy
     scipy
