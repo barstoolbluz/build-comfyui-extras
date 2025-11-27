@@ -3,6 +3,7 @@
 , fetchFromGitHub
 , fetchPypi
 , callPackage
+, stdenv
 }:
 
 let
@@ -45,13 +46,15 @@ python3.pkgs.buildPythonPackage rec {
     # Custom packages (9 packages)
     colour-science
     clip-interrogator
-    pixeloe
-    transparent-background
     img2texture
     cstr
     ffmpy
     color-matcher  # Custom build - nixpkgs version broken on macOS
     rembg  # Custom build - nixpkgs version x86_64-linux only
+  ] ++ lib.optionals (!stdenv.hostPlatform.isAarch64 || !stdenv.hostPlatform.isLinux) [
+    # These require kornia which is broken on aarch64-linux
+    pixeloe
+    transparent-background
   ];
 
   installPhase = ''
