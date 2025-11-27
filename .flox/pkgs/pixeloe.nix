@@ -10,6 +10,10 @@ python3.pkgs.buildPythonPackage rec {
     hash = "sha256-LWuVp6elV+B6bxV41tr6iErcQlzBqxbYzsLm/yZZSQE=";
   };
 
+  nativeBuildInputs = with python3.pkgs; [
+    setuptools
+  ];
+
   propagatedBuildInputs = with python3.pkgs; [
     numpy
     pillow
