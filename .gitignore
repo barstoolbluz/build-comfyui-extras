@@ -1,0 +1,21 @@
+# Flox
+.flox/cache/
+.flox/run/
+result
+result-*
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

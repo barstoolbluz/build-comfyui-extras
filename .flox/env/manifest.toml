@@ -1,0 +1,14 @@
+version = 1
+
+[install]
+# ComfyUI Extras - Custom Node Dependencies Package
+comfyui-extras.pkg-path = "./comfyui-extras"
+comfyui-extras.systems = ["x86_64-linux", "aarch64-linux"]
+
+[vars]
+# Package metadata
+COMFYUI_EXTRAS_VERSION = "0.1.0"
+COMFYUI_COMPAT_VERSION = "0.3.75"
+
+[options]
+systems = ["x86_64-linux", "aarch64-linux"]
