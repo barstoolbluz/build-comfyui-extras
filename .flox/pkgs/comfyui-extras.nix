@@ -15,6 +15,7 @@ let
   cstr = callPackage ./cstr.nix { };
   ffmpy = callPackage ./ffmpy.nix { };
   color-matcher = callPackage ./color-matcher.nix { };  # Custom build - nixpkgs version broken on macOS
+  rembg = callPackage ./rembg.nix { };  # Custom build - nixpkgs version x86_64-linux only
 in
 
 python3.pkgs.buildPythonPackage rec {
@@ -29,12 +30,11 @@ python3.pkgs.buildPythonPackage rec {
 
   # Import all custom node dependency packages
   propagatedBuildInputs = (with python3.pkgs; [
-    # From nixpkgs - Already available (11 packages)
+    # From nixpkgs - Already available (10 packages)
     piexif
     simpleeval
     numba
     gitpython
-    rembg
     onnxruntime
     fairscale
     albumentations
@@ -42,7 +42,7 @@ python3.pkgs.buildPythonPackage rec {
     pymatting
     pillow-heif
   ]) ++ [
-    # Custom packages (8 packages)
+    # Custom packages (9 packages)
     colour-science
     clip-interrogator
     pixeloe
@@ -51,6 +51,7 @@ python3.pkgs.buildPythonPackage rec {
     cstr
     ffmpy
     color-matcher  # Custom build - nixpkgs version broken on macOS
+    rembg  # Custom build - nixpkgs version x86_64-linux only
   ];
 
   installPhase = ''
