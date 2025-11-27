@@ -22,6 +22,7 @@ python3.pkgs.buildPythonPackage rec {
     torchvision
     pillow
     requests
+    open-clip-torch
   ];
 
   pythonImportsCheck = [ "clip_interrogator" ];
