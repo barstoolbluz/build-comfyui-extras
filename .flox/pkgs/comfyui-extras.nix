@@ -14,6 +14,7 @@ let
   img2texture = callPackage ./img2texture.nix { };
   cstr = callPackage ./cstr.nix { };
   ffmpy = callPackage ./ffmpy.nix { };
+  color-matcher = callPackage ./color-matcher.nix { };  # Custom build - nixpkgs version broken on macOS
 in
 
 python3.pkgs.buildPythonPackage rec {
@@ -28,10 +29,9 @@ python3.pkgs.buildPythonPackage rec {
 
   # Import all custom node dependency packages
   propagatedBuildInputs = (with python3.pkgs; [
-    # From nixpkgs - Already available (12 packages)
+    # From nixpkgs - Already available (11 packages)
     piexif
     simpleeval
-    color-matcher
     numba
     gitpython
     rembg
@@ -42,7 +42,7 @@ python3.pkgs.buildPythonPackage rec {
     pymatting
     pillow-heif
   ]) ++ [
-    # Custom packages (7 packages)
+    # Custom packages (8 packages)
     colour-science
     clip-interrogator
     pixeloe
@@ -50,6 +50,7 @@ python3.pkgs.buildPythonPackage rec {
     img2texture
     cstr
     ffmpy
+    color-matcher  # Custom build - nixpkgs version broken on macOS
   ];
 
   installPhase = ''
