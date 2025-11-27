@@ -2,7 +2,19 @@
 , python3
 , fetchFromGitHub
 , fetchPypi
+, callPackage
 }:
+
+let
+  # Custom packages built in .flox/pkgs/
+  colour-science = callPackage ./colour-science.nix { };
+  clip-interrogator = callPackage ./clip-interrogator.nix { };
+  pixeloe = callPackage ./pixeloe.nix { };
+  transparent-background = callPackage ./transparent-background.nix { };
+  img2texture = callPackage ./img2texture.nix { };
+  cstr = callPackage ./cstr.nix { };
+  ffmpy = callPackage ./ffmpy.nix { };
+in
 
 python3.pkgs.buildPythonPackage rec {
   pname = "comfyui-extras";
@@ -30,14 +42,14 @@ python3.pkgs.buildPythonPackage rec {
     pymatting
     pillow-heif
   ]) ++ [
-    # Custom packages - Need to build (TODO)
-    # colour-science
-    # clip-interrogator
-    # pixeloe
-    # transparent-background
-    # img2texture
-    # cstr
-    # ffmpy
+    # Custom packages (7 packages)
+    colour-science
+    clip-interrogator
+    pixeloe
+    transparent-background
+    img2texture
+    cstr
+    ffmpy
   ];
 
   installPhase = ''
