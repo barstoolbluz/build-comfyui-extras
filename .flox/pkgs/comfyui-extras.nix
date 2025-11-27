@@ -15,38 +15,29 @@ python3.pkgs.buildPythonPackage rec {
   doCheck = false;
 
   # Import all custom node dependency packages
-  propagatedBuildInputs = with python3.pkgs; [
-    # Tier 1: Lightweight, commonly needed
+  propagatedBuildInputs = (with python3.pkgs; [
+    # From nixpkgs - Already available (12 packages)
     piexif
-    colour-science
     simpleeval
     color-matcher
     numba
     gitpython
-
-    # Tier 2: Moderate deps, widely used
     rembg
     onnxruntime
-
-    # Tier 3: Heavy but useful
-    clip-interrogator
     fairscale
-    transparent-background
-    pixeloe
-
-    # Additional deps for various custom nodes
     albumentations
     easydict
     pymatting
     pillow-heif
-
-    # WASasquatch git-based packages
-    img2texture
-    cstr
-    ffmpy
-
-    # Additional utilities
-    wget-python
+  ]) ++ [
+    # Custom packages - Need to build (TODO)
+    # colour-science
+    # clip-interrogator
+    # pixeloe
+    # transparent-background
+    # img2texture
+    # cstr
+    # ffmpy
   ];
 
   installPhase = ''
