@@ -23,6 +23,9 @@ python3.pkgs.buildPythonPackage rec {
     kornia
   ];
 
+  # Disable runtime deps check - it looks for "opencv-python" but we provide "opencv4"
+  dontCheckRuntimeDeps = true;
+
   pythonImportsCheck = [ "pixeloe" ];
 
   meta = with lib; {
