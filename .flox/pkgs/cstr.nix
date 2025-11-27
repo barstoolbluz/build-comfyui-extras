@@ -9,7 +9,7 @@ python3.pkgs.buildPythonPackage rec {
     owner = "WASasquatch";
     repo = "cstr";
     rev = "0520c29a18a7a869a6e5983861d6f7a4c86f8e9b";
-    hash = "sha256-1fm22x63ijqszc3a38f7hdfglhbx16pwdkz8b9j5a81v966yf06d";
+    sha256 = "1fm22x63ijqszc3a38f7hdfglhbx16pwdkz8b9j5a81v966yf06d";
   };
 
   pythonImportsCheck = [ "cstr" ];

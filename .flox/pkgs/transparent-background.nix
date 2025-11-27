@@ -12,7 +12,7 @@ python3.pkgs.buildPythonPackage rec {
     python = "py3";
     abi = "none";
     platform = "any";
-    hash = "sha256-0chx5bv3ic0s9pcfjad7xnidvbqcs0c2qwpb2vm0dbi4w5i3k0ma";
+    sha256 = "0chx5bv3ic0s9pcfjad7xnidvbqcs0c2qwpb2vm0dbi4w5i3k0ma";
   };
 
   propagatedBuildInputs = with python3.pkgs; [

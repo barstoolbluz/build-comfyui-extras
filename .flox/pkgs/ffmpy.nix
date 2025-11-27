@@ -11,7 +11,7 @@ python3.pkgs.buildPythonPackage rec {
     python = "py3";
     abi = "none";
     platform = "any";
-    hash = "sha256-0cq2p2j9nl9is7kdl2b0nrl6fg751rij782r95nsbnhnb37rjdyz";
+    sha256 = "0cq2p2j9nl9is7kdl2b0nrl6fg751rij782r95nsbnhnb37rjdyz";
   };
 
   pythonImportsCheck = [ "ffmpy" ];

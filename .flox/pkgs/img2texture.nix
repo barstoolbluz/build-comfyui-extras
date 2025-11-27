@@ -9,7 +9,7 @@ python3.pkgs.buildPythonPackage rec {
     owner = "WASasquatch";
     repo = "img2texture";
     rev = "d6159abea44a0b2cf77454d3d46962c8b21eb9d3";
-    hash = "sha256-0kpirm765wrr06znb0h547wf8njm2k3jf0fmkssiryp037srxjg7";
+    sha256 = "0kpirm765wrr06znb0h547wf8njm2k3jf0fmkssiryp037srxjg7";
   };
 
   propagatedBuildInputs = with python3.pkgs; [
