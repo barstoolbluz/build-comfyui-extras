@@ -8,10 +8,10 @@ This package provides a batteries-included collection of Python dependencies com
 
 ## Version Compatibility
 
-- **ComfyUI Extras Version**: 0.3.75
-- **Compatible with ComfyUI**: 0.3.75
+- **ComfyUI Extras Version**: 0.6.0
+- **Compatible with ComfyUI**: 0.6.0
 
-**Version Policy**: comfyui-extras version matches ComfyUI version exactly. When ComfyUI updates to 0.3.76, comfyui-extras will also update to 0.3.76.
+**Version Policy**: comfyui-extras version matches ComfyUI version exactly. When ComfyUI updates to 0.6.1, comfyui-extras will also update to 0.6.1.
 
 ## Platform Support
 
@@ -58,7 +58,7 @@ This package provides a batteries-included collection of Python dependencies com
 ```toml
 # Add to your ComfyUI environment's manifest.toml
 [install]
-comfyui-extras.pkg-path = "barstoolbluz/comfyui-extras@0.3.75"
+comfyui-extras.pkg-path = "barstoolbluz/comfyui-extras@0.6.0"
 ```
 
 Or install directly:

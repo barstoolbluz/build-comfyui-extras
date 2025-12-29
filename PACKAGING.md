@@ -257,11 +257,11 @@ flox publish -o barstoolbluz comfyui-extras
 
 **Policy**: comfyui-extras version ALWAYS matches ComfyUI version exactly.
 
-When ComfyUI updates (e.g., 0.3.75 → 0.3.76):
+When ComfyUI updates (e.g., 0.6.0 → 0.6.1):
 
 1. Update version in `.flox/pkgs/comfyui-extras.nix`:
    ```nix
-   version = "0.3.76";  # Match ComfyUI version
+   version = "0.6.1";  # Match ComfyUI version
    ```
 
 2. Test extras package with new ComfyUI version
@@ -283,6 +283,6 @@ flox publish -o barstoolbluz comfyui-extras
 Users can then install matching versions:
 ```toml
 [install]
-comfyui.pkg-path = "barstoolbluz/comfyui@0.3.76"
-comfyui-extras.pkg-path = "barstoolbluz/comfyui-extras@0.3.76"
+comfyui.pkg-path = "barstoolbluz/comfyui@0.6.1"
+comfyui-extras.pkg-path = "barstoolbluz/comfyui-extras@0.6.1"
 ```

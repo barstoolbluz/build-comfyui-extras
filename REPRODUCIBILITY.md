@@ -149,9 +149,9 @@ This means first build takes time to compile 9 packages. Subsequent builds use l
 
 **Each ComfyUI version gets its own git branch:**
 
-- `main` → Latest stable ComfyUI version (currently 0.3.75)
-- `0.3.75` → Frozen version for ComfyUI 0.3.75
-- `0.3.76` → Future version for ComfyUI 0.3.76
+- `main` → Latest stable ComfyUI version (currently 0.6.0)
+- `0.6.0` → Frozen version for ComfyUI 0.6.0
+- `0.6.1` → Future version for ComfyUI 0.6.1
 - etc.
 
 ### Why Branch Per Version?
@@ -165,17 +165,17 @@ Vendored sources are **large binary files** committed to git. Rebasing or updati
 
 ### Version Update Workflow
 
-When ComfyUI releases a new version (e.g., 0.3.76):
+When ComfyUI releases a new version (e.g., 0.6.1):
 
 1. **Create version branch from main**:
    ```bash
    git checkout main
-   git checkout -b 0.3.76
+   git checkout -b 0.6.1
    ```
 
 2. **Update version in comfyui-extras.nix**:
    ```nix
-   version = "0.3.76";  # Match ComfyUI version
+   version = "0.6.1";  # Match ComfyUI version
    ```
 
 3. **Check for dependency changes**:
@@ -196,7 +196,7 @@ When ComfyUI releases a new version (e.g., 0.3.76):
    # Commit ALL changes including binaries
    git add sources/
    git add .flox/pkgs/
-   git commit -m "comfyui-extras 0.3.76: Update vendored sources"
+   git commit -m "comfyui-extras 0.6.1: Update vendored sources"
    ```
 
 6. **Test on all platforms**:
@@ -210,9 +210,9 @@ When ComfyUI releases a new version (e.g., 0.3.76):
 7. **Merge to main and tag**:
    ```bash
    git checkout main
-   git merge 0.3.76
-   git tag v0.3.76
-   git push origin main 0.3.76 --tags
+   git merge 0.6.1
+   git tag v0.6.1
+   git push origin main 0.6.1 --tags
    ```
 
 8. **Publish to FloxHub**:
@@ -229,11 +229,11 @@ Users can target specific branches:
 flox install barstoolbluz/comfyui-extras
 
 # Install specific version via git branch
-flox install barstoolbluz/comfyui-extras@0.3.75
+flox install barstoolbluz/comfyui-extras@0.6.0
 
 # Or in manifest.toml
 [install]
-comfyui-extras.pkg-path = "barstoolbluz/comfyui-extras@0.3.75"
+comfyui-extras.pkg-path = "barstoolbluz/comfyui-extras@0.6.0"
 ```
 
 ### Branch Maintenance
