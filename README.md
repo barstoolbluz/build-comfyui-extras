@@ -2,14 +2,38 @@
 
 Production-ready package containing all common ComfyUI custom node dependencies, properly packaged for Nix/Flox with long-term reproducibility.
 
+## Branching Strategy
+
+This repository follows a three-branch strategy for version management:
+
+- **`main`** - Stable version (v0.6.0) using standard packages from nixpkgs
+- **`nightly`** - Latest version (v0.9.1) with updated packages
+- **`historical`** - Previous stable version (v0.6.0) maintained for compatibility
+
+### Switching Branches
+
+```bash
+# Latest bleeding-edge version
+git checkout nightly
+flox build comfyui-extras
+
+# Stable version
+git checkout main
+flox build comfyui-extras
+
+# Historical version
+git checkout historical
+flox build comfyui-extras
+```
+
 ## Overview
 
 This package provides a batteries-included collection of Python dependencies commonly required by ComfyUI custom nodes. Instead of pip-installing with `--break-system-packages`, users can install this single package for a clean, reproducible setup.
 
 ## Version Compatibility
 
-- **ComfyUI Extras Version**: 0.6.0
-- **Compatible with ComfyUI**: 0.6.0
+- **ComfyUI Extras Version**: 0.9.1
+- **Compatible with ComfyUI**: 0.9.1
 
 **Version Policy**: comfyui-extras version matches ComfyUI version exactly. When ComfyUI updates to 0.6.1, comfyui-extras will also update to 0.6.1.
 
@@ -58,7 +82,7 @@ This package provides a batteries-included collection of Python dependencies com
 ```toml
 # Add to your ComfyUI environment's manifest.toml
 [install]
-comfyui-extras.pkg-path = "barstoolbluz/comfyui-extras@0.6.0"
+comfyui-extras.pkg-path = "barstoolbluz/comfyui-extras@0.9.1"
 ```
 
 Or install directly:
