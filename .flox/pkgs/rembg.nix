@@ -2,11 +2,11 @@
 
 python3.pkgs.buildPythonPackage rec {
   pname = "rembg";
-  version = "2.0.68";
+  version = "2.0.69";
   format = "wheel";
 
   # Use vendored source for reproducibility
-  src = ../../sources/rembg-2.0.68-py3-none-any.whl;
+  src = ../../sources/rembg-2.0.69-py3-none-any.whl;
 
   dontBuild = true;
 

@@ -2,11 +2,11 @@
 
 python3.pkgs.buildPythonPackage rec {
   pname = "colour-science";
-  version = "0.4.6";
+  version = "0.4.7";
   format = "wheel";
 
   # Use vendored source for reproducibility
-  src = ../../sources/colour_science-0.4.6-py3-none-any.whl;
+  src = ../../sources/colour_science-0.4.7-py3-none-any.whl;
 
   dontBuild = true;
 

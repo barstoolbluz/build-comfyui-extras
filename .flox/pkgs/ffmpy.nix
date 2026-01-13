@@ -2,11 +2,11 @@
 
 python3.pkgs.buildPythonPackage rec {
   pname = "ffmpy";
-  version = "0.5.0";
+  version = "1.0.0";
   format = "wheel";
 
   # Use vendored source for reproducibility
-  src = ../../sources/ffmpy-0.5.0-py3-none-any.whl;
+  src = ../../sources/ffmpy-1.0.0-py3-none-any.whl;
 
   dontBuild = true;
 
