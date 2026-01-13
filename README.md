@@ -1,4 +1,7 @@
-# ComfyUI Extras - Custom Node Dependencies
+# ComfyUI Extras - Custom Node Dependencies (Historical Branch - v0.6.0)
+
+> **Note**: This is the historical branch maintaining ComfyUI Extras v0.6.0 for compatibility.
+> For the latest version, switch to the `nightly` branch.
 
 Production-ready package containing all common ComfyUI custom node dependencies, properly packaged for Nix/Flox with long-term reproducibility.
 
