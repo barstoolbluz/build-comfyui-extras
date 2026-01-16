@@ -11,7 +11,7 @@ python3.pkgs.buildPythonPackage rec {
   src = fetchPypi {
     pname = "segment_anything";
     inherit version;
-    hash = "";  # Will get from build error
+    hash = "sha256-7Qyfb7B7vvnGI4pwKKE8gnLxumtjBcpz4+BkJmUDc2s=";
   };
 
   propagatedBuildInputs = with python3.pkgs; [
