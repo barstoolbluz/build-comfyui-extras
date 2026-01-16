@@ -15,6 +15,7 @@ let
   ffmpy = callPackage ./ffmpy.nix { };
   color-matcher = callPackage ./color-matcher.nix { };  # Custom build - nixpkgs version broken on macOS
   rembg = callPackage ./rembg.nix { };  # Custom build - nixpkgs version x86_64-linux only
+  segment-anything = callPackage ./segment-anything.nix { };  # Required for Impact Pack face detection
 in
 
 python3.pkgs.buildPythonPackage rec {
@@ -43,7 +44,7 @@ python3.pkgs.buildPythonPackage rec {
     # Broken on all Darwin (macOS) platforms due to stringzilla compilation issues
     albumentations
   ]) ++ [
-    # Custom packages - Always included (7 packages)
+    # Custom packages - Always included (8 packages)
     colour-science
     clip-interrogator
     img2texture
@@ -51,6 +52,7 @@ python3.pkgs.buildPythonPackage rec {
     ffmpy
     color-matcher  # Custom build - nixpkgs version broken on macOS
     rembg  # Custom build - nixpkgs version x86_64-linux only
+    segment-anything  # Required for Impact Pack face detection
   ] ++ lib.optionals (!stdenv.hostPlatform.isAarch64 || !stdenv.hostPlatform.isLinux) [
     # Custom packages - Conditional (2 packages, excluded on aarch64-linux due to kornia-rs)
     pixeloe
